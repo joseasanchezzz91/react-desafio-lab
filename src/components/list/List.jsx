@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import Table from "../table/Table";
 import Thead from "../table/Thead";
 import Tr from "../table/Tr";
@@ -21,41 +21,36 @@ export default class List extends Component {
 
   render() {
     return (
-      <Fragment>
-        <div>
-          <Table>
-            <Thead>
-              <Tr>
-                <Th>id</Th>
-                <Th>Name</Th>
-                <Th></Th>
-              </Tr>
-            </Thead>
-            <Tbody>
-              {this.state.list.map((user, i) => (
-                <Tr key={i}>
-                  <Td> {user.id}</Td>
-                  <Td> {user.name}</Td>
+      <div className="App">
+        <Table>
+          <Thead>
+            <Tr>
+              <Th>id</Th>
+              <Th>Name</Th>
+              <Th></Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {this.state.list.map((user, i) => (
+              <Tr key={i}>
+                <Td> {user.id}</Td>
+                <Td> {user.name}</Td>
 
-                  <Td>
-                    <Button style={"primary"} event={() => console.log("edit")}>
-                      RING
-                    </Button>
-                  </Td>
-                  <Td>
-                    <Button
-                      style={"danger"}
-                      event={() => console.log("delete")}
-                    >
-                      KILL
-                    </Button>
-                  </Td>
-                </Tr>
-              ))}
-            </Tbody>
-          </Table>
-        </div>
-      </Fragment>
+                <Td>
+                  <Button style={"primary"} event={() => console.log("edit")}>
+                    RING
+                  </Button>
+                </Td>
+                <Td>
+                  <Button style={"danger"} event={() => console.log("delete")}>
+                    KILL
+                  </Button>
+                </Td>
+              </Tr>
+            ))}
+          </Tbody>
+        </Table>
+      </div>
     );
   }
 }
