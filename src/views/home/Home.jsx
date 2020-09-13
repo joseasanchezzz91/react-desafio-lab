@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import List from "../../components/list/List";
 
+
 export default class Home extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +10,8 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
+        <h1 className="text-center">Lista de Post</h1>
         <List />
       </div>
     );
