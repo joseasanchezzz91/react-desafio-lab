@@ -1,19 +1,13 @@
-import React, { Component } from 'react'
+import React from "react";
 
-export default class FormEdit extends Component {
+export default function FormEdit() {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-             
-        }
-    }
-
-    render() {
-        return (
-            <div>
-                FormEdit
-            </div>
-        )
-    }
+  return (
+    <div>
+      <h1>Form Edit</h1>
+      <form>
+          input
+      </form>
+    </div>
+  );
 }

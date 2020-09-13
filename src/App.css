@@ -114,3 +114,6 @@ label {
 .inline-btn {
   display: inline-flex;
 }
+.ml-1 {
+  margin: 5px;
+}
