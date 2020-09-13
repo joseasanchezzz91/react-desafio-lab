@@ -2,21 +2,16 @@ import axios from "axios";
 import { apiUrl } from "../config/consts";
 import { queries, mutations } from "../config/constPost";
 
-export const getAll = async () => {
+export const getAll = async (params = "options:{paginate: {page: 1,limit: 5 }" ) => {
   let posts = [];
   await axios
     .post(apiUrl, {
       query: queries.getPosts,
       variables: {
-        options: {
-          paginate: {
-            page: 1,
-            limit: 5,
-          },
-        },
-      },
-    })
-    .then((result) => {
+        params
+        }
+      }
+    ).then((result) => {
       posts = result.data.data.posts.data;
     });
   return posts;
@@ -76,5 +71,17 @@ export const update = (formData) => {
       console.log("=========== Update ===============");
       console.log(result.data.data.updatePost);
       console.log("==================================");
+    });
+};
+
+export const deletePost = async (id) => {
+  await axios
+    .post(apiUrl, {
+      query: mutations.deletePost,
+      variables: { id },
+    })
+    .then()
+    .catch((error) => {
+      console.error(error);
     });
 };

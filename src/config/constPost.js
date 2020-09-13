@@ -55,9 +55,11 @@ module.exports = {
           body
         }
       }`,
-    delete: `
-        query($id: ID!){
-            deletePost(id: $id)
-        }`,
+    deletePost: ` mutation (
+      $id: ID!
+    ) {
+      deletePost(id: $id)
+    }
+    `,
   },
 };

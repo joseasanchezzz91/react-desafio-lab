@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-import { css } from "@emotion/core";
+import Swal from "sweetalert2";
 import Loading from "../loading/Loading";
 import Table from "../table/Table";
 import Thead from "../table/Thead";
@@ -9,11 +9,8 @@ import Th from "../table/Th";
 import Tbody from "../table/Tbody";
 import Td from "../table/Td";
 import Button from "../button/Button";
-import { getAll } from "../../services/post.services";
+import { getAll, deletePost } from "../../services/post.services";
 
-const override = css`
-  size: 15;
-`;
 export default class List extends Component {
   constructor(props) {
     super(props);
@@ -22,6 +19,45 @@ export default class List extends Component {
       loading: true,
     };
   }
+
+  handleDelete = (id) => {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn button",
+        cancelButton: "btn button-red ml-1",
+      },
+      buttonsStyling: false,
+    });
+
+    swalWithBootstrapButtons
+      .fire({
+        title: "¿Estas seguro?",
+        text: "¡No podrás revertir esto!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Aceptar",
+        cancelButtonText: "Cancelar",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          this.setState({ loading: true });
+          const deletePostById = () => {
+            return deletePost(id);
+          };
+          const isDelete = deletePostById();
+          if (isDelete) {
+            swalWithBootstrapButtons.fire(
+              "¡Exito!",
+              "El registro ha sido eliminado.",
+              "success"
+            );
+            this.setState({ loading: false });
+          }
+        }
+      });
+  };
+
   componentDidMount() {
     const getList = async () => {
       const list = await getAll();
@@ -29,7 +65,6 @@ export default class List extends Component {
     };
     getList();
   }
-
   render() {
     return (
       <Fragment>
@@ -74,7 +109,7 @@ export default class List extends Component {
 
                             <Button
                               styles={"btn button-red"}
-                              event={() => console.log("delete")}
+                              event={() => this.handleDelete(post.id)}
                             >
                               Eliminar
                             </Button>
