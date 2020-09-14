@@ -2,16 +2,21 @@ import axios from "axios";
 import { apiUrl } from "../config/consts";
 import { queries, mutations } from "../config/constPost";
 
-export const getAll = async (params = "options:{paginate: {page: 1,limit: 5 }" ) => {
+export const getAll = async (page, limit) => {
   let posts = [];
   await axios
     .post(apiUrl, {
       query: queries.getPosts,
       variables: {
-        params
-        }
-      }
-    ).then((result) => {
+        options: {
+          paginate: {
+            page: page,
+            limit: limit,
+          },
+        },
+      },
+    })
+    .then((result) => {
       posts = result.data.data.posts.data;
     });
   return posts;
@@ -35,42 +40,38 @@ export const getPost = async (id) => {
   return post;
 };
 
-export const create = (formData) => {
-  console.log(formData);
-  axios
+export const create = async (formData) => {
+  await axios
     .post(apiUrl, {
       query: mutations.createPost,
       variables: {
         input: {
-          title: "NUEVO TITULO ",
-          body: "CUERPO DEL POST.",
+          title: formData.get("title"),
+          body: formData.get("body"),
         },
       },
     })
-    .then((result) => {
-      console.log("=========== Create ===============");
-      console.log(result.data.data.createPost);
-      console.log("==================================");
+    .then()
+    .catch((error) => {
+      console.log(error);
     });
 };
 
 export const update = (formData) => {
-  console.log(formData);
   axios
     .post(apiUrl, {
       query: mutations.updatePost,
       variables: {
         id: 1,
         input: {
-          title: "titulo 1",
-          body: "Some updated content. 1",
+          title: formData.get("title"),
+          body: formData.get("body"),
         },
       },
     })
-    .then((result) => {
-      console.log("=========== Update ===============");
-      console.log(result.data.data.updatePost);
-      console.log("==================================");
+    .then()
+    .catch((error) => {
+      console.log(error);
     });
 };
 
