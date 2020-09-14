@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en el componente Home debe mostrar <Home/> correctamente 1`] = `
+<div>
+  <h1
+    className="text-center"
+  >
+    Lista de Post
+  </h1>
+  <List />
+</div>
+`;
