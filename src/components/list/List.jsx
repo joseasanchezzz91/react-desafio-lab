@@ -17,6 +17,10 @@ export default class List extends Component {
     this.state = {
       list: [getAll()],
       loading: true,
+      next: 1,
+      previus: 0,
+      limit: 10,
+      disabled: true,
     };
   }
 
@@ -59,12 +63,35 @@ export default class List extends Component {
   };
 
   componentDidMount() {
+    this.recursive();
+  }
+
+  recursive = (nextOrPrevius = this.state.next, limit = this.state.limit) => {
+    this.setState({ loading: true });
     const getList = async () => {
-      const list = await getAll();
+      const list = await getAll(nextOrPrevius, limit);
       this.setState({ list, loading: false });
     };
     getList();
-  }
+  };
+  handleNext = () => {
+    const previus = this.state.next;
+    const next = previus + 1;
+    this.setState({ Loading: true, previus, next, disabled: false });
+    this.recursive(next);
+  };
+
+  handlePrevius = () => {
+    const old = this.state.previus;
+    const previus = this.state.previus - 1;
+    if (previus === 0) {
+      this.setState({ disabled: true });
+    }
+    const next = this.state.next - 1;
+    this.setState({ Loading: true, previus, next });
+    this.recursive(old);
+  };
+
   render() {
     return (
       <Fragment>
@@ -101,7 +128,7 @@ export default class List extends Component {
                               <Button styles={"btn button"}>Detalle</Button>
                             </Link>
 
-                            <Link to="/">
+                            <Link to={`/post/${post.id}/edit`}>
                               <Button styles={"btn button-yellow"}>
                                 Editar
                               </Button>
@@ -120,6 +147,16 @@ export default class List extends Component {
                   : null}
               </Tbody>
             </Table>
+            <Button
+              styles={"btn button"}
+              event={this.handlePrevius}
+              disabled={this.state.disabled}
+            >
+              Previus
+            </Button>
+            <Button styles={"btn button"} event={this.handleNext}>
+              Next
+            </Button>
           </div>
         )}
       </Fragment>
