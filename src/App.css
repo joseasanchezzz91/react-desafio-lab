@@ -90,8 +90,8 @@ label {
 
 .button {
   color: #fff;
-  background-color: #00bcd4;
-  border-color: #03a9f4;
+  background-color: #024e9b;
+  border-color: #024e9b;
 }
 .button-red {
   color: #fff;
@@ -109,5 +109,102 @@ label {
   display: inline-flex;
 }
 .ml-1 {
-  margin: 5px;
+  margin-left: 5px;
+}
+
+table {
+  display: table;
+  border-collapse: separate;
+  box-sizing: border-box;
+  border-spacing: 2px;
+  border-color: grey;
+}
+
+.tabla thead th {
+  vertical-align: bottom;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.tabla td,
+.tabla th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: 1px solid #dee2e6;
+}
+
+td {
+  display: table-cell;
+  vertical-align: inherit;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+.tabla {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212529;
+  border-collapse: collapse;
+}
+
+.tabla .thead-dark th {
+  color: #fff;
+  background-color: #024e9b;
+  border-color: #024e9b;
+}
+
+.padding-table {
+  padding: 1.5rem;
+  margin-right: 0;
+  margin-left: 0;
+  border-width: 0.2rem;
+}
+.btn-delete {
+  padding: 0;
+  background-color: white;
+  border: none;
+}
+
+.accion {
+  display: inline-flex;
+}
+
+.p-btn {
+  padding-top: 10px;
+}
+.card {
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+.card-body {
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+}
+.card-title {
+  margin-bottom: 0.75rem;
+}
+
+.card-subtitle {
+  margin-top: -0.375rem;
+  margin-bottom: 0;
+}
+.text-muted {
+  color: #6c757d !important;
+}
+.mb-2 {
+  margin-bottom: 2% !important;
 }

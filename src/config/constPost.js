@@ -29,6 +29,7 @@ module.exports = {
               data {
                 name
                 email
+                body
               }
             }
           }

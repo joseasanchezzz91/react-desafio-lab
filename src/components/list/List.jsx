@@ -1,6 +1,9 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import { FaTrashAlt, FaEye } from "react-icons/fa";
+import { ImArrowRight, ImArrowLeft } from "react-icons/im";
+import { MdEdit } from "react-icons/md";
 import Loading from "../loading/Loading";
 import Table from "../table/Table";
 import Thead from "../table/Thead";
@@ -98,14 +101,14 @@ export default class List extends Component {
         {this.state.loading ? (
           <Loading size={60} color={"#123abc"} loading={this.state.loading} />
         ) : (
-          <div className="center">
+          <div className="center padding-table">
             <div className="left">
               <Link to="/post/new">
                 <button className="btn button">Crear Post</button>
               </Link>
             </div>
-            <Table>
-              <Thead>
+            <Table styles={"tabla"}>
+              <Thead styles={"thead-dark"}>
                 <Tr>
                   <Th>#</Th>
                   <Th>Titulo</Th>
@@ -123,22 +126,23 @@ export default class List extends Component {
                         <Td> {post.body}</Td>
                         <Td> {post.user && post.user.name}</Td>
                         <Td>
-                          <div className="center">
+                          <div className="accion">
                             <Link to={`/post/detail/${post.id}`}>
-                              <Button styles={"btn button"}>Detalle</Button>
+                              {/* <Button styles={"btn button"}>Detalle</Button> */}
+                              <span>
+                                <FaEye size={"1.5em"} color={"#024e9b"} />
+                              </span>
                             </Link>
 
                             <Link to={`/post/${post.id}/edit`}>
-                              <Button styles={"btn button-yellow"}>
-                                Editar
-                              </Button>
+                              <MdEdit size={"1.5em"} color={"#024e9b"} />
                             </Link>
 
                             <Button
-                              styles={"btn button-red"}
+                              styles={"btn-delete"}
                               event={() => this.handleDelete(post.id)}
                             >
-                              Eliminar
+                              <FaTrashAlt size={"1.5em"} color={"#024e9b"} />
                             </Button>
                           </div>
                         </Td>
@@ -147,16 +151,18 @@ export default class List extends Component {
                   : null}
               </Tbody>
             </Table>
-            <Button
-              styles={"btn button"}
-              event={this.handlePrevius}
-              disabled={this.state.disabled}
-            >
-              Previus
-            </Button>
-            <Button styles={"btn button"} event={this.handleNext}>
-              Next
-            </Button>
+            <div className="center">
+              <Button
+                styles={"btn button p-btn"}
+                event={this.handlePrevius}
+                disabled={this.state.disabled}
+              >
+                <ImArrowLeft size={"1.5em"} />
+              </Button>
+              <Button styles={"btn button ml-1 p-btn"} event={this.handleNext}>
+                <ImArrowRight size={"1.5em"} />
+              </Button>
+            </div>
           </div>
         )}
       </Fragment>

@@ -75,7 +75,7 @@ export default class FormCreate extends Component {
                     </Link>
                   </div>
                   <div>
-                    <button className="btn button">Aceptar</button>
+                    <button className="btn button ml-1">Aceptar</button>
                   </div>
                 </div>
               </div>

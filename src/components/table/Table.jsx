@@ -1,8 +1,8 @@
 import React from "react";
 
 const Table = (props) => {
-  const { children } = props;
-  return <table className="characters-table">{children}</table>;
+  const { children, styles } = props;
+  return <table className={styles}>{children}</table>;
 };
 
 export default Table;

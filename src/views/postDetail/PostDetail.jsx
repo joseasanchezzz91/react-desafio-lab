@@ -31,27 +31,28 @@ export default class PostDetail extends Component {
           <Loading size={60} color={"#123abc"} loading={this.state.loading} />
         ) : (
           <div className="center">
-            <ul>
-              <li>{id} </li>
-              <li>{title} </li>
-              <li>{body} </li>
-              <ul>
-                <li>{user.name} </li>
-                <li>{user.email} </li>
-              </ul>
-            </ul>
-            <div>
-              <h2>Comentarios</h2>
-              {comments &&
-                comments.data.map((comment, index) => (
-                  <ul key={index}>
-                    <li>{comment.name}</li>
-                    <li>{comment.email}</li>
-                  </ul>
-                ))}
+            <div className="card">
+              <div className="card-body">
+                <h5 className="card-title">{title}</h5>
+                <p className="card-text">{body}</p>
+                <h4 className="card-subtitle mb-2 text-muted">Autor</h4>
+                <p className="card-text">Nombre: {user.name}</p>
+                <p className="card-text">email: {user.email}</p>
+              </div>
             </div>
-
-            <div className="center">
+            <h2>Comentarios</h2>
+            {comments &&
+              comments.data.map((comment, index) => (
+                <div className="card mb-2">
+                  <div className="card-body">
+                    <p className="card-text">{comment.body}</p>
+                    <h4 className="card-subtitle text-muted">Autor</h4>
+                    <p className="card-text">Nombre: {comment.name}</p>
+                    <p className="card-text">email: {comment.email}</p>
+                  </div>
+                </div>
+              ))}
+            <div className="center mb-2">
               <Link to="/">
                 <Button styles={"btn button"}>Volver</Button>
               </Link>
