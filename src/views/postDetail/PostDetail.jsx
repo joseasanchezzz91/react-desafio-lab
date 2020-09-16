@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { HeadProvider, Title, Meta } from "react-head";
 import { Link } from "react-router-dom";
 import { getPost } from "../../services/post.services";
 import Button from "../../components/button/Button";
@@ -22,10 +23,19 @@ export default class PostDetail extends Component {
     get();
   }
   render() {
-    const { id, title, body, user, comments } = this.state.post;
+    const {  title, body, user, comments } = this.state.post;
     const { loading } = this.state;
     return (
       <div className="center">
+        <HeadProvider>
+          <div className="center">
+            <Title>{title} | Post</Title>
+            <Meta
+              content="Matoy informacion del post seleccionado"
+              name="description"
+            />
+          </div>
+        </HeadProvider>
         <h1>Detalle del post</h1>
         {loading ? (
           <Loading size={60} color={"#123abc"} loading={this.state.loading} />
@@ -43,7 +53,7 @@ export default class PostDetail extends Component {
             <h2>Comentarios</h2>
             {comments &&
               comments.data.map((comment, index) => (
-                <div className="card mb-2">
+                <div className="card mb-2" key={index}>
                   <div className="card-body">
                     <p className="card-text">{comment.body}</p>
                     <h4 className="card-subtitle text-muted">Autor</h4>

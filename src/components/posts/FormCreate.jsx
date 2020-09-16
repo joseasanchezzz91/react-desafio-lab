@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { HeadProvider, Title, Meta } from "react-head";
 import { Link } from "react-router-dom";
 import { create } from "../../services/post.services";
 import { AlertInfo } from "../alert/Alert";
@@ -31,6 +32,15 @@ export default class FormCreate extends Component {
   render() {
     return (
       <div>
+        <HeadProvider>
+          <div className="center">
+            <Title>Crear | Post</Title>
+            <Meta
+              content="En esta parte se podra crear los post"
+              name="description"
+            />
+          </div>
+        </HeadProvider>
         {this.state.loading ? (
           <Loading size={60} color={"#123abc"} loading={this.state.loading} />
         ) : (
