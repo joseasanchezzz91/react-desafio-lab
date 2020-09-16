@@ -15,5 +15,4 @@ Este comando corre los tests unitarios desarrollados!
 
 ### `Saber mas sobre la Api`
 
-En este link podras encontrar mayor información!
-!!![https://graphqlzero.almansi.me/#example-top](https://graphqlzero.almansi.me/#example-top)
+En este link podras encontrar mayor información[https://graphqlzero.almansi.me/#example-top](https://graphqlzero.almansi.me/#example-top)
