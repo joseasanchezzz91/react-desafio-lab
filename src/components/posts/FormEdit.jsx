@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { HeadProvider, Title, Meta } from "react-head";
 import { getPost, update } from "../../services/post.services";
 import { AlertInfo } from "../alert/Alert";
 import Loading from "../loading/Loading";
@@ -40,6 +41,12 @@ export default function FormEdit(props) {
 
   return (
     <div>
+      <HeadProvider>
+        <div className="center">
+          <Title>Editar {post.title}| Post</Title>
+          <Meta content="Editar post seleccionado" name="description" />
+        </div>
+      </HeadProvider>
       <h2 className="text-center">Editar de Post</h2>
       {loading ? (
         <div className="">
